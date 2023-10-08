@@ -1,7 +1,7 @@
 import React from "react";
 import "./style/style.css";
 import { useEffect, useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import { usePage, useBearStore } from "../store/useStore";
 import { shallow } from "zustand/shallow";
 
@@ -47,7 +47,7 @@ function AppMain() {
 
   return (
     <>
-      <BrowserRouter>
+      <HashRouter>
         <div className="AppMain" onClick={() => setNotify(!notify)}>
           <LazyAppHeader />
           <div className="AppBody">
@@ -136,7 +136,7 @@ function AppMain() {
             </Routes>
           </div>
         </div>
-      </BrowserRouter>
+      </HashRouter>
     </>
   );
 }
