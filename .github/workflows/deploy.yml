@@ -26,7 +26,7 @@ jobs:
         run: npm run build
 
         env:
-        VITE_REACT_APP_APIURL: ${{ secrets.VITE_REACT_APP_APIURL }}
+        VITE_REACT_APP_APIURL: ${{ import.meta.env.VITE_REACT_APP_APIURL }}
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v2
