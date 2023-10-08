@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import userIcon from "../assets/User.svg";
 import lockIcon from "../assets/Lock.svg";
-import unLockIcon from "../assets/unlock.svg";
+import unLockIcon from "../assets/Unlock.svg";
 
 function AppLogin() {
   const [userName, setUserName] = useState("");
@@ -18,13 +18,8 @@ function AppLogin() {
 
   const [register, setRegister] = useState(false);
 
-  // let url = "https://busy-cyan-catfish-tam.cyclic.app/register";
-  // let url1 = "https://busy-cyan-catfish-tam.cyclic.app/login";
-  // let url2 = "http://localhost:3000/login";
-
   const handleSub = () => {
     try {
-      // e.preventDefault();
       fetch(
         `${import.meta.env.VITE_REACT_APP_APIURL}/${
           register ? "register" : "login"
