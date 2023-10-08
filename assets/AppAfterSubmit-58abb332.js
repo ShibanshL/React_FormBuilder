@@ -1,0 +1,1 @@
+import{j as e}from"./index-7431db36.js";function r(){return e.jsx(e.Fragment,{children:e.jsx("div",{className:"AppAfterSubmit",children:e.jsxs("div",{className:"SubmittedCard",children:[e.jsx("h2",{children:"Response have been Noted"}),e.jsx("h1",{children:"Thank you."})]})})})}export{r as default};
