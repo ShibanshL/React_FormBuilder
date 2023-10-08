@@ -24,7 +24,6 @@ jobs:
 
       - name: Build project
         run: npm run build
-
         env:
         VITE_REACT_APP_APIURL: ${{ import.meta.env.VITE_REACT_APP_APIURL }}
 
