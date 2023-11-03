@@ -119,7 +119,9 @@ function AppHeader() {
   return (
     <>
       <div className="AppHeader">
-        <h2>FormBuilder</h2>
+        <Link to="/">
+          <h2>FormBuilder</h2>
+        </Link>
         <div className="MobileButton">
           <img
             src={MenuIcon}

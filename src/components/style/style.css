@@ -456,6 +456,7 @@ form {
   width: 60vw;
   border-radius: 10px;
   background: var(--blueVeryHeavy);
+  text-align: center;
   font-size: 2em;
   font-weight: 700;
   color: white;
@@ -2028,6 +2029,7 @@ input[type="checkbox"]:checked::before {
 
   .DatePass_card {
     padding: 20px;
+    text-align: center;
     text-align: center;
     font-size: 1em;
   }
