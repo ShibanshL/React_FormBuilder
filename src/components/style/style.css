@@ -74,6 +74,10 @@ button {
 .AddResTopTab,
 .IndividualButton,
 .AddResChart,
+.FullScreenChart,
+.chartPopupFS,
+.fullchartdarkbg,
+.fullChartwhitbg,
 .FormCreationNo,
 .ResponseNo,
 .AppResListEmails,
@@ -1224,6 +1228,61 @@ form {
   position: relative;
 }
 
+.AddResChart .FullScreenChart {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  background: var(--blueVeryHeavy);
+  z-index: 2;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+
+.FullScreenChart img {
+  width: 20px;
+}
+
+.FullScreenChart:hover {
+  background: var(--blueMidMid);
+}
+
+.chartPopupFS {
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  top: 0;
+  z-index: 3;
+}
+
+.chartPopupFS .fullchartdarkbg {
+  height: 90%;
+  width: 90%;
+  background: var(--blueVeryHeavy);
+  border-radius: 10px;
+}
+
+.fullChartwhitbg {
+  height: 95%;
+  width: 98%;
+  background: white;
+  border-radius: 10px;
+}
+
+.closeButton {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
+}
+
+.closeButton img {
+  width: 30px;
+}
+
 .AddResChart .AddResCharts_Sub {
   height: 100%;
   width: 100%;
@@ -2085,6 +2144,10 @@ input[type="checkbox"]:checked::before {
     left: 50%;
     border-radius: 10px;
     transform: translate(-50%, -50%);
+  }
+
+  .FullScreenChart {
+    display: none;
   }
 
   .MoreInfo h2 {

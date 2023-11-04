@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router";
 import RightIcon from "../assets/Right.svg";
+import fullScreenIcon from "../assets/fullscreen.svg";
+import crossIcon from "../assets/Cross 2.svg";
 import { Line, LineChart, Tooltip, XAxis } from "recharts";
 import { usePage } from "../store/useStore";
 import { fetchData, fetchUserResData, fetchChartData } from "./APIREQ";
@@ -14,6 +16,9 @@ function AppFormResponses() {
   const [allFormRes, setAllFormRes] = useState<any>([]);
   const [loading, setLoading] = useState(false);
   const [chart_Data, setChartData] = useState<any>([{}]);
+  const [chart_Data_Pop, setChartData_Pop] = useState<any>([{}]);
+
+  const [chartPopup, setChartPopup] = useState(false);
 
   const setPage = usePage((state: any) => state.setPage);
 
@@ -30,7 +35,6 @@ function AppFormResponses() {
       form_id,
       page,
     });
-    // fetchResponseData();
     fetchUserResData({
       setFormRes,
       setAllFormRes,
@@ -40,7 +44,7 @@ function AppFormResponses() {
       page,
     });
 
-    fetchChartData(form_id, setChartData);
+    fetchChartData(form_id, setChartData, setChartData_Pop);
   }, [globalToken]);
 
   useEffect(() => {
@@ -82,6 +86,9 @@ function AppFormResponses() {
           </div>
         </div>
         <div className="AddResChart">
+          <div className="FullScreenChart" onClick={() => setChartPopup(true)}>
+            <img src={fullScreenIcon} />
+          </div>
           <div className="AddResCharts_Sub">
             <LineChart
               width={1000}
@@ -161,7 +168,6 @@ function AppFormResponses() {
                   : "~"}
               </strong>
             </h3>
-            {/* <div className="ResponsesCreatedon"></div> */}
           </div>
           <div className="FormCreationNo">
             <h3>
@@ -206,6 +212,37 @@ function AppFormResponses() {
           </div>
         </div>
       </div>
+      {chartPopup ? (
+        <div className="chartPopupFS">
+          <div className="fullchartdarkbg">
+            <div className="fullChartwhitbg">
+              <div className="closeButton" onClick={() => setChartPopup(false)}>
+                <img src={crossIcon} />
+              </div>
+              <LineChart
+                width={1300}
+                height={500}
+                data={chart_Data_Pop}
+                margin={{
+                  top: 5,
+                  right: 30,
+                  left: 20,
+                  bottom: 5,
+                }}
+              >
+                <XAxis dataKey="date" minTickGap={10} tickLine={false} />
+                <Tooltip />
+                <Line
+                  type="linear"
+                  dataKey="res"
+                  stroke="#fa8e44"
+                  strokeWidth={3}
+                />
+              </LineChart>
+            </div>
+          </div>
+        </div>
+      ) : null}
     </>
   );
 }

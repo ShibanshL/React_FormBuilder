@@ -187,8 +187,10 @@ const updateChartData = (e: string | undefined) => {
 
 const fetchChartData = async (
   form_id: string | undefined,
-  setChartData: (e: any) => void
+  setChartData: (e: any) => void,
+  setChartData_Pop: (e: any) => void
 ) => {
+  let dataArr = [];
   let url = `${import.meta.env.VITE_REACT_APP_APIURL}/indRes/${form_id}`;
   let res = await fetch(url);
   let data = await res.json();
@@ -204,8 +206,22 @@ const fetchChartData = async (
       loc_dates[0].chartData[i].date = date;
     }
   }
+  setChartData_Pop(loc_dates[0].chartData);
 
-  setChartData(loc_dates[0].chartData);
+  if (loc_dates[0].chartData.length < 7) {
+    setChartData(loc_dates[0].chartData);
+  }
+
+  if (loc_dates[0].chartData.length > 7) {
+    for (
+      let i = loc_dates[0].chartData.length - 7;
+      i < loc_dates[0].chartData.length;
+      i++
+    ) {
+      dataArr.push(loc_dates[0].chartData[i]);
+    }
+    setChartData(dataArr);
+  }
 };
 
 interface APP_FORM_SUBMIT_DATA {
