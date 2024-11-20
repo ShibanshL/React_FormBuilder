@@ -437,8 +437,8 @@ function AppBuildForm() {
                         }}
                         style={
                           allData[idx].answerType == "Text"
-                            ? { background: "white", color: "#abc4ff" }
-                            : { background: "#abc4ff", color: "white" }
+                            ? { background: "white", color: "#121212" }
+                            : { background: "#121212", color: "white" }
                         }
                       >
                         Text
@@ -460,8 +460,8 @@ function AppBuildForm() {
                         }}
                         style={
                           allData[idx].answerType == "Options"
-                            ? { background: "white", color: "#abc4ff" }
-                            : { background: "#abc4ff", color: "white" }
+                          ? { background: "white", color: "#121212" }
+                          : { background: "#121212", color: "white" }
                         }
                       >
                         Options

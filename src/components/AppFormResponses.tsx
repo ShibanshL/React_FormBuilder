@@ -112,7 +112,7 @@ function AppFormResponses() {
             </LineChart>
             <div className="MoreInfo">
               <h2>
-                No of responses on {chart_Data[chart_Data.length - 1].date}-
+                No of responses since {chart_Data[chart_Data.length - 1].date}-
                 {new Date().getFullYear()} :{" "}
               </h2>
               <h1>{chart_Data[chart_Data.length - 1].res}</h1>
@@ -148,7 +148,7 @@ function AppFormResponses() {
             <h1>{allFormRes?.length}</h1>
             <label>Latest response</label>
             <h3>
-              <strong>
+              {/* <strong>
                 {formRes?.sub?.data?.creationTime
                   ? formRes?.sub?.data?.creationTime
                   : "~"}
@@ -158,7 +158,7 @@ function AppFormResponses() {
                 {formRes?.sub?.data?.creationDate
                   ? formRes?.sub?.data?.creationDate
                   : "~"}
-              </strong>{" "}
+              </strong>{" "} */}
               by{" "}
               <strong>
                 {formRes?.sub?.data?.formEmail
