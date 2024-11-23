@@ -130,7 +130,6 @@ function AppLogin() {
     if (globalToken) {
       nav("/user");
     }
-    // console.log(token);
   }, [token]);
 
   const handleClick = () => {
