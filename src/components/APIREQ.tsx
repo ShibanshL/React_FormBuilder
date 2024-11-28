@@ -195,9 +195,12 @@ const fetchChartData = async (
   let res = await fetch(url);
   let data = await res.json();
   let loc_dates = data;
+  
+  // console.log('chartd',loc_dates)
 
   if (loc_dates[0].chartData.length > 0) {
     // newData = loc_dates;
+    // console.log('wtf am i doing here')
     for (let i = 0; i < loc_dates[0].chartData.length; i++) {
       let oldDate = loc_dates[0].chartData[i].date.split("-");
       let day = oldDate[0];
@@ -209,6 +212,7 @@ const fetchChartData = async (
   setChartData_Pop(loc_dates[0].chartData);
 
   if (loc_dates[0].chartData.length < 7) {
+    // console.log('here')
     setChartData(loc_dates[0].chartData);
   }
 

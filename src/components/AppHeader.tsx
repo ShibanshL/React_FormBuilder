@@ -2,11 +2,12 @@ import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import MenuIcon from "../assets/Menu.svg";
 import CrossIcon from "../assets/Cross 2.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { usePage } from "../store/useStore";
 
 function AppHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [currentTab, setCurrentTab]:any = useState('')
   const page = usePage((state: any) => state.page);
 
   const globalToken = window.localStorage.getItem("token");
@@ -17,6 +18,17 @@ function AppHeader() {
     nav("/login");
   };
 
+  useEffect(() => {
+    sessionStorage.setItem("CurrentTab",currentTab)
+  },[currentTab])
+
+  useEffect(() => {
+    if(sessionStorage.getItem('CurrentTab')){
+      console.log('hgere')
+      return setCurrentTab(sessionStorage.getItem('CurrentTab'))
+    }
+  },[])
+
   const NavInputs = () => {
     if (page == "APP_FORM") {
       return null;
@@ -25,10 +37,15 @@ function AppHeader() {
         <>
           <div
             className="NavButtons"
+            // onClick={() => sessionStorage.setItem("CurrentTab","User")}
             style={globalToken ? { display: "flex" } : { display: "none" }}
           >
             <div>
-              <Link to="/user">
+              <Link 
+                to="/user"
+                className={currentTab == "User"?"LinkP":""}
+                onClick={() => setCurrentTab("User")}
+              >
                 <p
                 // style={
                 //   page == "BUILD_FORM"
@@ -43,11 +60,15 @@ function AppHeader() {
                 //       }
                 // }
                 >
-                  USER
+                  YOUR FORMS
                 </p>
               </Link>
 
-              <Link to="/build">
+              <Link 
+                to="/build"
+                className={currentTab == "Build"?"LinkP":""}
+                onClick={() => setCurrentTab("Build")}
+                >
                 <p
                 // style={
                 //   page == "BUILD_FORM"
@@ -62,7 +83,7 @@ function AppHeader() {
                 //     : {}
                 // }
                 >
-                  BUILD{" "}
+                  BUILD FORMS{" "}
                 </p>
               </Link>
             </div>

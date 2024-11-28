@@ -336,9 +336,8 @@ function AppBuildForm() {
                 handleClick_2();
               }}
             >
-              Add
+              Add Questions
             </button>
-            <button onClick={handleSub}>Submit</button>
           </div>
         </div>
 
@@ -543,10 +542,18 @@ function AppBuildForm() {
             </>
           );
         })}
+
+      <div style={{width:"100%", display:'flex', justifyContent:"flex-end", padding:'20px 73px 20px 73px'}}>
+        <button style={{color:'black', background:'white'}} onClick={handleSub}>Submit Form</button>
+      </div>
+
+      </div>
+      <div>
+
       </div>
       <div
         className="AppBuildForm_Popover"
-        style={abtSubmit ? { zIndex: 5 } : { zIndex: -1 }}
+        style={abtSubmit ? { zIndex: 5} : { zIndex: -1 }}
       >
         <div className="SubmitTab">
           <div className="DatePicker">

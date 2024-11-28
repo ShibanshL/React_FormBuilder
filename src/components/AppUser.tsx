@@ -11,7 +11,64 @@ function AppUser() {
   const [userData, setuserData] = useState<any>([]);
   const setPage = usePage((state: any) => state.setPage);
 
+
+
+  const [isHovered, setIsHovered] = useState({
+    name:"",
+    val:false
+  });
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+
+
   const [loading, setLoading] = useState(false);
+
+  const handleMouseMove = (event:any) => {
+    setCursorPosition({
+      x: handleModal_Postion(event),  // Adds some margin from the cursor
+      y: event.clientY + 10,
+    });
+  };
+
+  const handleModal_Postion = (e:any) => {
+
+    if(isHovered.name == 'HyperLink'){
+      return e.clientX + 10 
+    }
+
+    if(isHovered.name == 'UserResponses'){
+      return e.clientX - 215 
+    }
+
+    if(isHovered.name == 'UserGraphs'){
+      return e.clientX - 320 
+    }
+
+    if(isHovered.name == 'CongratulationBadge'){
+      return e.clientX - 300 
+    }
+
+    return e.clientX + 10 
+  }
+
+  const hoverMessage = () => {
+
+    if(isHovered.name == 'HyperLink'){
+      return 'Link to your form.'
+    }
+
+    if(isHovered.name == 'UserResponses'){
+      return 'Number of responses'
+    }
+
+    if(isHovered.name == 'UserGraphs'){
+      return 'Link to form Responses Dashboard'
+    }
+
+    if(isHovered.name == 'CongratulationBadge'){
+      return 'No of responses recently added.'
+    }
+
+  }
 
   let nav = useNavigate();
 
@@ -51,7 +108,12 @@ function AppUser() {
           {userData.map((e: any, idx: number) => (
             <div key={idx} className="AppUserForms">
               <div className="UserLinks">
-                <div className="HyperLink">
+                <div 
+                  className="HyperLink"
+                  onMouseOver={() => setIsHovered({name:'HyperLink', val:true})}
+                  onMouseOut={() => setIsHovered({name:'', val:false})}
+                  onMouseMove={(e) => isHovered.name && handleMouseMove(e)}
+                  >
                   <Link
                     to={`/form/${globalToken}/${e.data.subData.formData.formUID}`}
                     target={"_blank"}
@@ -69,12 +131,21 @@ function AppUser() {
 
               <div className="userData">
                 {e.data.subData.response > 0 ? (
-                  <div className="CongratulationBadge">
+                  <div 
+                    className="CongratulationBadge"
+                    onMouseOver={() => setIsHovered({name:'CongratulationBadge', val:true})}
+                    onMouseOut={() => setIsHovered({name:'', val:false})}
+                    onMouseMove={(e) => isHovered.name && handleMouseMove(e)}
+                  
+                  >
                     <p>{e.data.subData.response > 10 ? "10+" : "+1"}</p>
                   </div>
                 ) : null}
                 <div
                   className="UserGraphs"
+                  onMouseOver={() => setIsHovered({name:'UserGraphs', val:true})}
+                  onMouseOut={() => setIsHovered({name:'', val:false})}
+                  onMouseMove={(e) => isHovered.name && handleMouseMove(e)}
                   onClick={() =>
                     nav(`/response/${e.data.subData.formData.formUID}`)
                   }
@@ -83,6 +154,9 @@ function AppUser() {
                 </div>
                 <div
                   className="UserResponses"
+                  onMouseOver={() => setIsHovered({name:'UserResponses', val:true})}
+                  onMouseOut={() => setIsHovered({name:'', val:false})}
+                  onMouseMove={handleMouseMove}
                   style={
                     JSON.stringify(e.data.subData.response).length > 4
                       ? { fontSize: "1em " }
@@ -102,6 +176,17 @@ function AppUser() {
             <h2>Go to the build page to build a form.</h2>
           </div>
         </>
+      )}
+       {isHovered.val && (
+        <div
+          className="modal"
+          style={{
+            left: `${cursorPosition.x}px`,
+            top: `${cursorPosition.y}px`,
+          }}
+        >
+          {hoverMessage()}
+        </div>
       )}
     </>
   );
