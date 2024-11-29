@@ -24,7 +24,7 @@ function AppBuildForm() {
   const [id, setId] = useState(0);
 
   const [allData, setAllData] = useState<any>([]);
-
+    
   const [optionFilled, setOptionFilled] = useState(false);
 
   const [optionsSelected, setOptionsSelected] = useState("");
