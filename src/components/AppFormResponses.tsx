@@ -53,41 +53,9 @@ function AppFormResponses() {
 
   useEffect(() => {
 
-    // const Data = chart_Data.map((item:any) => {
-    //   return {
-    //     date:`${item.date}-${new Date().getFullYear().toString().slice(2,4)}`,
-    //     res:item.res
-    //   }
-    // })
-
-
-    // setNewChartData(Data)
-
     setNewChartData(generateMissingDates(chart_Data))
 
   },[chart_Data])
-
-  // useEffect(() => {
-  //   console.log('newChartData',newChartData.map((e:any) => e.date.slice(0,5)))
-  // },[newChartData])
-
-
-
-  //This is the chatgpt code, more or less it won't work
-
-
- 
-
-  // useEffect(() => {
-
-  // },[])
-
-  useEffect(() => {
-    console.log('chart',newChartData)
-  },[newChartData])
-
-
-  //This is where the chatgpt code end
 
 
   useEffect(() => {
@@ -98,6 +66,7 @@ function AppFormResponses() {
 
   useEffect(() => {
     setPage("FORM_RES");
+    console.log(!!userData)
   }, []);
 
   if (loading) {
@@ -125,17 +94,6 @@ function AppFormResponses() {
               ? formData?.formQuestion?.question.substring(0, 50) + "..."
               : formData?.formQuestion?.question}
           </h2>
-
-          {/* Removed the Individual button over here */}
-          {/* <div
-            className="IndividualButton"
-            onClick={() => nav(`/emails/${form_id}`)}
-          >
-            <label>Individual</label>
-            <img src={RightIcon} alt="" />
-          </div> */}
-          {/* Removed the individual button over here */}
-
         </div>
         <div className="AddResChart">
           <div className="FullScreenChart" onClick={() => setChartPopup(true)}>
@@ -162,13 +120,6 @@ function AppFormResponses() {
                 strokeWidth={3}
               />
             </LineChart>
-            {/* <div className="MoreInfo">
-              <h2>
-                No of responses since {chart_Data[chart_Data.length - 1].date}-
-                {new Date().getFullYear()} :{" "}
-              </h2>
-              <h1>{chart_Data[chart_Data.length - 1].res}</h1>
-            </div> */}
           </div>
           <div className="HiddenChart">
             <LineChart
@@ -200,17 +151,6 @@ function AppFormResponses() {
             <h1>{allFormRes?.length}</h1>
             <label>Latest response</label>
             <h3>
-              {/* <strong>
-                {formRes?.sub?.data?.creationTime
-                  ? formRes?.sub?.data?.creationTime
-                  : "~"}
-              </strong>{" "}
-              on{" "}
-              <strong>
-                {formRes?.sub?.data?.creationDate
-                  ? formRes?.sub?.data?.creationDate
-                  : "~"}
-              </strong>{" "} */}
               by{" "}
               <strong>
                 {formRes?.sub?.data?.formEmail
@@ -233,21 +173,6 @@ function AppFormResponses() {
             </h3>
           </div>
         </div>
-
-        {/* Removed Total Number of form tab */}
-        {/* <div className="AppResAllForm">
-          <div className="AllFormText">
-            <h2>Total No of Forms : </h2>
-            <h1>{userData?.length}</h1>
-          </div>
-          <div className="AllFormButton">
-            <button onClick={() => nav("/user")}>
-              <img src={RightIcon} alt="" />
-            </button>
-          </div>
-        </div> */}
-        {/* Removed total number of form tab */}
-
         <div className="AppResListEmails">
           <div className="ListEmaitopNav">
             <h2>All Responses</h2>
@@ -361,14 +286,3 @@ function generateMissingDates(arr: DataItem[]): DataItem[] {
   return result;
 }
 
-// Example input
-const data: DataItem[] = [
-  { date: "20-11", res: 1 },
-  { date: "29-11", res: 4 },
-  { date: "03-12", res: 2 }
-];
-
-// Generate the new array with missing dates
-const newData = generateMissingDates(data);
-
-console.log(newData);

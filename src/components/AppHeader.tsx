@@ -1,9 +1,22 @@
 import { useNavigate } from "react-router";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import MenuIcon from "../assets/Menu.svg";
 import CrossIcon from "../assets/Cross 2.svg";
 import { useEffect, useState } from "react";
 import { usePage } from "../store/useStore";
+
+
+
+const useURLChange = (callback:any) => {
+  const location = useLocation();
+
+  useEffect(() => {
+    // Trigger the callback function whenever the URL changes
+    callback(location);
+  }, [location, callback]); // Re-run when location changes
+};
+
+
 
 function AppHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -18,13 +31,30 @@ function AppHeader() {
     nav("/login");
   };
 
+  const handleURLChange = (location:any) => {
+    console.log('URL changed to:', location.pathname);
+    // Your custom code here, e.g. tracking, side-effects
+  };
+
+  // Use the custom hook to trigger the function on URL change
+  const url12:any = useURLChange(handleURLChange);
+  
+  useEffect(() => {
+
+    if(url12?.includes("build")){
+      setCurrentTab("Build")
+    }
+    else setCurrentTab("User")
+    // console.log(url)
+  },[url12])
+
+
   useEffect(() => {
     sessionStorage.setItem("CurrentTab",currentTab)
   },[currentTab])
 
   useEffect(() => {
     if(sessionStorage.getItem('CurrentTab')){
-      console.log('hgere')
       return setCurrentTab(sessionStorage.getItem('CurrentTab'))
     }
   },[])
@@ -140,7 +170,7 @@ function AppHeader() {
   return (
     <>
       <div className="AppHeader">
-        <Link to="/">
+        <Link onClick={() => setCurrentTab("User")} to="/">
           <h2>FormBuilder</h2>
         </Link>
         <div className="MobileButton">
