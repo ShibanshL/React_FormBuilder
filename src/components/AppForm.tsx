@@ -48,10 +48,9 @@ function AppForm() {
     let loc = userData.data?.subData?.formData?.formDataArray;
 
     let pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
-    if (email) {
+    if (email) { 
       if (email.match(pattern)) {
         setEmailOk("true");
-
         for (
           let i = 0;
           i < userData.data?.subData?.formData?.formDataArray.length;
@@ -126,7 +125,6 @@ function AppForm() {
     if (userData) {
       userData.data?.subData?.formData?.formDataArray.map((e: any) => {
         if (e.required) {
-          // console.log("req", e);
           if (e.answerType == "Options") {
             locVar.push(e.id);
           }
@@ -161,13 +159,13 @@ function AppForm() {
 
     if (email != "") {
       if (idArraySel.length == 0 && txtQArr.length == 0 && emailOk == "true") {
-        setNotif(`You've not filled any Questions. 00`);
+        return setNotif(`You've not filled any Questions. 00`);
       }
       if (txtQArr.length == 0 || txtQArr.length !== noOfTxtQ.length) {
-        setNotif(`You've missed some of the required questions`);
+        return setNotif(`You've missed some of the required questions34`);
       }
-      if (idArraySel.length == 0 || idArraySel.length !== idArray.length) {
-        setNotif(`You've missed some of the required questions`);
+      if(idArraySel.length == 0 || idArraySel.length !== idArray.length) {
+        return setNotif(`You've missed some of the required questions12`);
       }
     }
     if (optionBor) {
@@ -245,13 +243,13 @@ function AppForm() {
     <>
       <div className="AppForm">
         <div className="AppFormHeadingTab">
-          <h2>{userData.data?.subData?.formQuestion?.question}</h2>
-          <label>{userData.data?.subData?.formQuestion?.description}</label>
+          <h2 style={{color:'white', fontWeight:500}}>{userData.data?.subData?.formQuestion?.question}</h2>
+          <label style={{color:'white', fontWeight:500, marginTop:'10px'}}>{userData.data?.subData?.formQuestion?.description}</label>
         </div>
 
         <div className="AppFormEmail">
           <div className="AppEmailQuestion">
-            <label>
+            <label style={{color:'white', fontWeight:500}}>
               Please Enter your email.
               <div className="ifMobileEm" style={{ color: "rgb(216, 61, 30)" }}>
                 *
@@ -288,7 +286,7 @@ function AppForm() {
                   // style={emailOk ? { opacity: 0.5 } : { opacity: 1 }}
                 >
                   <div className="AppFormLabel">
-                    <label>
+                    <label style={{color:'white', fontWeight:500}}>
                       Q{idx + 1}. {e.question}?&nbsp;
                       <div
                         className="ifMobile"

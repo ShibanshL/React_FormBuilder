@@ -2,7 +2,7 @@ function AppPageURLError() {
   return (
     <>
       <div className="Loading">
-        <h1>Please check the link before using it.</h1>
+        <h1>Please Check the URL before using it.</h1>
       </div>
     </>
   );

@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router";
 import HyperLink from "../assets/hyperLink.svg";
 import { usePage } from "../store/useStore";
 import { fetchUserResData } from "./APIREQ";
+import LeftIcon from '../assets/LeftIcon.svg'
 
 function AppListMails() {
   const nav = useNavigate();
@@ -41,6 +42,23 @@ function AppListMails() {
   return (
     <>
       <div className="AppListMails">
+        <div
+          className="AppListMails_TopBar"
+          // style={{height:'8vh', width:'100%', background:'pink', borderRadius:'10px'}}
+        >
+          <div className="AllFormButton">
+                <button onClick={() => nav(`/response/${form_id}`)}>
+                  <img src={LeftIcon} alt="" />
+                </button>
+          </div>
+          <h2>Go back to Form Responses</h2>
+          {/* <h2>{" "}/{" "}</h2>
+          <div className="AllFormButton">
+                <button onClick={() => nav("/user")}>
+                  <img src={RightIcon} style={{transform:"rotate(180deg)"}} alt="" />
+                </button>
+          </div> */}
+        </div>
         {allFormRes.length != 0 ? (
           allFormRes.map((e: any) => {
             return (
@@ -57,8 +75,8 @@ function AppListMails() {
                     <img src={HyperLink} />
                   </div>
                   <h2>
-                    {e.sub.data.formEmail.length > 15
-                      ? e.sub.data.formEmail.substring(0, 15) + "..."
+                    {e.sub.data.formEmail.length > 25
+                      ? e.sub.data.formEmail.substring(0, 25) + "..."
                       : e.sub.data.formEmail}
                   </h2>
                 </div>

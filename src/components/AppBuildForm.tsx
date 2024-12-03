@@ -293,7 +293,7 @@ function AppBuildForm() {
       <>
         <div className="MaxLimitReached">
           <div className="MaxLimitCards">
-            <h1>
+            <h1 style={{fontWeight:500}}>
               Sorry you've reached the max number of forms allowed for a single
               account!!
             </h1>
@@ -329,7 +329,7 @@ function AppBuildForm() {
     <>
       <div className="AppBuildForm">
         <div className="FormButtonsTabs">
-          <h2>Form Builder</h2>
+          <h2 style={{color:'white', fontWeight:500}}>Create Form : </h2>
           <div className="FormTopBarButtons">
             <button
               onClick={() => {
@@ -543,12 +543,9 @@ function AppBuildForm() {
           );
         })}
 
-      <div style={{width:"100%", display:'flex', justifyContent:"flex-end", padding:'20px 73px 20px 73px'}}>
-        <button style={{color:'black', background:'white'}} onClick={handleSub}>Submit Form</button>
-      </div>
-
-      </div>
-      <div>
+        <div style={{width:"90vw", display:'flex', justifyContent:"flex-end", padding:'20px 5px 20px 5px'}}>
+          <button style={{color:'black', background:'white'}} onClick={handleSub}>Submit Form</button>
+        </div>
 
       </div>
       <div
@@ -557,13 +554,13 @@ function AppBuildForm() {
       >
         <div className="SubmitTab">
           <div className="DatePicker">
-            <h2>Please Select Expiry date for the form!!</h2>
+            <h2 style={{color:'black', fontWeight:500, marginBottom:'15px'}}>Please Select Expiry date for the form!!</h2>
             <input
               type="date"
               min={new Date().toISOString().split("T")[0]}
               style={{
                 width: "100%",
-                backgroundColor: "#abc4ff",
+                backgroundColor: "#1f1f1f",
                 color: "white",
                 textTransform: "uppercase",
                 fontWeight: 600,
@@ -572,23 +569,30 @@ function AppBuildForm() {
               onChange={(e: any) => setDate(e.target.value)}
             />
           </div>
-          <button
-            disabled={date ? false : true}
-            onClick={() => {
-              buildChartData(formID, globalToken);
-              postBuildFormData({
-                allData,
-                globalToken,
-                formID,
-                date,
-                heading,
-                desc,
-                nav,
-              });
-            }}
-          >
-            Submit
-          </button>
+          <div >
+            <button
+            onClick={() => setAbtSubmit(false)}
+            >
+              Cancel
+            </button>
+            <button
+              disabled={date ? false : true}
+              onClick={() => {
+                buildChartData(formID, globalToken);
+                postBuildFormData({
+                  allData,
+                  globalToken,
+                  formID,
+                  date,
+                  heading,
+                  desc,
+                  nav,
+                });
+              }}
+            >
+              Submit
+            </button>
+          </div>
         </div>
       </div>
       <div

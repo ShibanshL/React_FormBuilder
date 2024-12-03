@@ -3,6 +3,7 @@ import { useNavigate, useParams, useLocation } from "react-router";
 // const creatHash = require('')
 import { usePage } from "../store/useStore";
 import { fetchUserResData } from "./APIREQ";
+import LeftIcon from '../assets/LeftIcon.svg'
 
 function AppIndividualRes() {
   const nav = useNavigate();
@@ -50,7 +51,7 @@ function AppIndividualRes() {
         <>
           <div className="AppIndivAnswerTexts">
             <div className="AppIndivParent">
-              <h2 style={{ display: "flex", gap: "10px 10px" }}>
+              <h2 style={{ display: "flex", gap: "10px 10px" , color:'white', fontWeight:500}}>
                 Q{e.id + 1}: {e.question}
                 {e.required ? (
                   <div className="ifImpAppIndv" style={{ color: "red" }}>
@@ -62,7 +63,7 @@ function AppIndividualRes() {
             </div>
 
             <div className="TextAnswer">
-              <h3>{e.textAnswer}</h3>
+              <h3 style={{color:'black', fontWeight:500}}>{e.textAnswer}</h3>
             </div>
           </div>
         </>
@@ -74,7 +75,7 @@ function AppIndividualRes() {
         return (
           <>
             <div className="AppIndivAnswerTexts">
-              <h2 style={{ display: "flex", gap: "10px 10px" }}>
+              <h2 style={{ display: "flex", gap: "10px 10px" , color:'white', fontWeight:500}}>
                 Q{e.id + 1}: {e.question}
                 {e.required ? (
                   <div className="ifImpAppIndv" style={{ color: "red" }}>
@@ -96,7 +97,7 @@ function AppIndividualRes() {
                           type="checkbox"
                           checked={val.isSelected ? true : false}
                         />
-                        <h3>{val.OptionSub}</h3>
+                        <h3 style={{color:'black', fontWeight:500}}>{val.OptionSub}</h3>
                       </div>
                     </div>
                   </>
@@ -111,7 +112,7 @@ function AppIndividualRes() {
           <>
             <div className="AppIndivAnswerTexts">
               <div className="AppIndivParent">
-                <h2 style={{ display: "flex", gap: "10px 10px" }}>
+                <h2 style={{ display: "flex", gap: "10px 10px" , color:'white', fontWeight:500}}>
                   Q{e.id + 1}: {e.question}
                   {e.required ? (
                     <div className="ifImpAppIndv" style={{ color: "red" }}>
@@ -139,7 +140,7 @@ function AppIndividualRes() {
                           type="checkbox"
                           checked={val.isSingle_Selected ? true : false}
                         />
-                        <h3>{val.OptionSub}</h3>
+                        <h3 style={{color:'black', fontWeight:500}}>{val.OptionSub}</h3>
                       </div>
                     </div>
                   </>
@@ -155,12 +156,23 @@ function AppIndividualRes() {
   return (
     <>
       <div className="AppIndividualRes">
+      <div
+          className="AppListMails_TopBar"
+          // style={{height:'8vh', width:'100%', background:'pink', borderRadius:'10px'}}
+        >
+          <div className="AllFormButton">
+                <button onClick={() => nav(`/emails/${form_id}`)}>
+                  <img src={LeftIcon} alt="" />
+                </button>
+          </div>
+          <h2>Go back to List of mails</h2>
+        </div>
         <div className="AppIndividQuestion">
-          <h2>Q: {allFormRes.sub?.data?.formQuestion?.question}</h2>
+          <h2 style={{color:'white', fontWeight:500}}>Q: {allFormRes.sub?.data?.formQuestion?.question}</h2>
         </div>
         {allFormRes.sub?.data?.formQuestion?.description !== "" ? (
           <div className="AppIndividDescription">
-            <h2>{allFormRes.sub?.data?.formQuestion?.description}</h2>
+            <h2 style={{color:'white', fontWeight:500}}>{allFormRes.sub?.data?.formQuestion?.description}</h2>
           </div>
         ) : null}
         {allFormRes?.sub?.data?.formSub.map((e: any) => formOptions(e))}

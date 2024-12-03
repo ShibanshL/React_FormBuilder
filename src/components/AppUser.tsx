@@ -101,8 +101,8 @@ function AppUser() {
       {userData.length > 0 ? (
         <div className="AppUser">
           <div className="AppUserTabs">
-            <h2>Responses</h2>
-            <label>{userData.length} / 4</label>
+            <h2 style={{color:'white', fontWeight:500}}>Responses</h2>
+            <label style={{color:'white', fontWeight:500}}>{userData.length} / 4</label>
           </div>
 
           {userData.map((e: any, idx: number) => (
@@ -121,7 +121,7 @@ function AppUser() {
                     <img src={HyperLinkImg} alt="" />
                   </Link>
                 </div>
-                <h2>
+                <h2 style={{color:'white', fontWeight:500}}>
                   {e.data.subData.formQuestion.question.length > 100
                     ? e.data.subData.formQuestion.question.substring(0, 100) +
                       "..."
@@ -172,8 +172,10 @@ function AppUser() {
       ) : (
         <>
           <div className="NoformYetMade">
-            <h1>Please build a form first!!</h1>
-            <h2>Go to the build page to build a form.</h2>
+            <div className="NoformYetMade_Card">
+              <h1 style={{color:'white', fontWeight:500}}>Please build a form first!!</h1>
+              <h2 style={{color:'white', fontWeight:500}}>Go to the build page to build a form.</h2>
+            </div>
           </div>
         </>
       )}
