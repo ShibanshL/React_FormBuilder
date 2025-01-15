@@ -1,1 +1,0 @@
-import{j as e}from"./index-272213f6.js";function s(){return e.jsx(e.Fragment,{children:e.jsx("div",{className:"Loading",children:e.jsx("h1",{children:"Please Check the URL before using it."})})})}export{s as default};
